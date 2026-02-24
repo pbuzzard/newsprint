@@ -1,0 +1,15 @@
+name: Deploy to neocities
+on: push:
+  branches:
+    - main # Change to the name of your default branch (e.g., master)
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Deploy to neocities
+        uses: bcomnes/deploy-to-neocities@v1
+        with:
+          api_token: ${{ secrets.NEOCITIES_API_TOKEN }}
+          cleanup: true # Set to true to delete files on Neocities that are no longer in your repo
+          dist_dir: public # The folder in your repo that contains your site files
